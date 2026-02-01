@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #fce4ec; /* Light pink background */
+            margin: 0;
+            overflow: hidden; /* Prevents scrollbars when button moves */
+        }
+
+        .container {
+            text-align: center;
+            z-index: 1;
+        }
+
+        h1 {
+            color: #d81b60;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .gif-container img {
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #yesBtn {
+            background-color: #4CAF50; /* Green */
+            color: white;
+            font-weight: bold;
+        }
+
+        #noBtn {
+            background-color: #f44336; /* Red */
+            color: white;
+            font-weight: bold;
+            position: relative; /* Allows moving */
+        }
+
+        /* Message that appears after clicking Yes */
+        #successMessage {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        #successMessage h2 {
+            color: #d81b60;
+            font-size: 2.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="questionContainer">
+        <div class="gif-container">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYmZkbjZ6Znk5aHphb3B5b3Q5b3Q5b3Q5b3Q5b3Q5b3Q5YiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Cute Cat">
+        </div>
+        
+        <h1>Yeji Min, will you be my Valentine?</h1>
+        
+        <div class="buttons">
+            <button id="yesBtn">Yes</button>
+            <button id="noBtn">No</button>
+        </div>
+    </div>
+
+    <div id="successMessage">
+        <div class="gif-container">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMDJjZDI1MmQ1N2U4Y2E4Y2E4Y2E4Y2E4Y2E4Y2E4Y2E4Y2E4Y2E4YiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/T86i6yDyOYz7J6dPhf/giphy.gif" alt="Happy Cat">
+        </div>
+        <h2>Yay! See you soon! 💖</h2>
+    </div>
+
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const questionContainer = document.getElementById('questionContainer');
+        const successMessage = document.getElementById('successMessage');
+
+        // Function to move the 'No' button randomly
+        noBtn.addEventListener('mouseover', () => {
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = `${x}px`;
+            noBtn.style.top = `${y}px`;
+        });
+        
+        // Mobile support (tap instead of hover)
+        noBtn.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent clicking
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = `${x}px`;
+            noBtn.style.top = `${y}px`;
+        });
+
+        // Function for 'Yes' button click
+        yesBtn.addEventListener('click', () => {
+            questionContainer.style.display = 'none';
+            successMessage.style.display = 'flex';
+        });
+    </script>
+
+</body>
+</html>
